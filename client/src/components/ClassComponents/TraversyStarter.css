@@ -1,0 +1,12 @@
+ul {
+    padding:0;
+   /* margin:auto; */
+    width:100%;
+    border:0px solid cyan;
+    list-style:none; /* remove bullets */
+}
+
+li {
+    font-size:1.0em;
+    line-height: 1.5em;
+}
