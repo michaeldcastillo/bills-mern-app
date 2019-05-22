@@ -1,20 +1,25 @@
-import React from "react";
-import "./App.css";
-import Bill from "./components/ClassComponents/Bill.js";
-import AppTodo from "./AppTodo.js";
-import AppTodoComments from "./AppTodoComments.js";
-import TraversyStarter from "./components/ClassComponents/TraversyStarter.js";
+import React, { Component } from "react";
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import CreateOne from "./components/CreateOne.component.js";
+import ReadAll from "./components/ReadAll.component.js";
+import UpdateOne from "./components/UpdateOne.component.js";
+//import "./App.css";
+//import "bootstrap/dist/css/bootstrap.min.css";
 
-function App() {
-  return(
-      <div id="app" style={{border:"2px solid red",padding:"10px"}}>
-        <p style={{color:"red"}}>Hello From App.js</p>
-        <Bill />
-        <AppTodo />
-        <AppTodoComments />
-        <TraversyStarter /> {/* requires that the server be running on localhost:5000*/}
-      </div>
-  );
+class App extends Component {
+  render() {
+    return (
+      <Router>
+        <div>
+          <h2>App Component</h2>
+        </div>
+        <br />
+        <Route path="/create" component={CreateOne} />
+        <Route exact path="/" component={ReadAll} /> 
+        <Route path="/update/:id" component={UpdateOne} />
+      </Router>
+    );
+  }
 }
 
 export default App;
