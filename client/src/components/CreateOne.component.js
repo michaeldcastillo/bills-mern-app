@@ -11,6 +11,18 @@ class CreateOne extends Component {
     onChangeBillNotes = this.onChangeBillNotes.bind(this);
     onSubmit = this.onSubmit.bind(this);
 
+    /* --------------------- STATE -------------------- */
+    //component's initial state
+    state = {
+        bill_name: "",
+        bill_payment_url: "",
+        bill_due_date: "",
+        bill_due_amount: "",
+        bill_notes: "",
+        bill_paid_amount: null,
+        bill_paid_status: false
+    }
+
     /* --------------------- FORM EVENT LISTENERS -------------------- */
     onChangeBillName(event) {
         this.setState({bill_name: event.target.value});
@@ -47,10 +59,16 @@ class CreateOne extends Component {
         }
         console.log("newBill = ", newBill);
 
+        //(a.) POST REQUEST...
         //http://localhost:5000/api/create
         //axios.post().then();
+        axios.post("http://localhost:5000/api/create", newBill).then(function(httpResponse) {
+            console.log("httpResponse = ", httpResponse);
+            console.log("httpResponse.data = ", httpResponse.data);
+        });
 
-        this.setState = ({
+        //clear state
+        this.setState({
             bill_name: "",
             bill_payment_url: "",
             bill_due_date: "",
@@ -59,18 +77,7 @@ class CreateOne extends Component {
             bill_paid_amount: null,
             bill_paid_status: false
         });
-    }
 
-    /* --------------------- STATE -------------------- */
-    //component's initial state
-    state = {
-        bill_name: "",
-        bill_payment_url: "",
-        bill_due_date: "",
-        bill_due_amount: "",
-        bill_notes: "",
-        bill_paid_amount: null,
-        bill_paid_status: false
     }
 
     /* --------------------- RENDER -------------------- */
