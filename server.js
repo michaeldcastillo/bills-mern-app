@@ -13,4 +13,7 @@ app.get('/api/data', (req, res) => {
     res.json(backendData);
 });
 
+//axios.post().then();
+//http://localhost:5000/api/create
+
 app.listen(PORT, () => console.log(`Server started on port: ${PORT}`));
