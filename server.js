@@ -33,17 +33,29 @@ app.get('/api/data', (req, res) => {
 });
 */
 
-//(a.) POST RESPONSE...
+/* sample bill data...
+{
+	"_id" : ObjectId("5ce5b9e8febc2a72d0c933de"),
+	"bill_name" : "my first bill",
+	"bill_payment_url" : "my link",
+	"bill_due_date" : "tomorrow",
+	"bill_due_amount" : "20,000",
+	"bill_notes" : "i don't have the money!",
+	"__v" : 0
+}
+*/
+
+//(a.) CREATE - POST ONE RESPONSE...
 //http://localhost:5000/api/create
 //Routes.route().post().then().catch();
 Routes.route('/create').post(function(httpRequest, httpResponse) {
     console.log("\nPOST request for 'localhost:5000/api/create' works!");
     console.log("httpRequest.body = ", httpRequest.body);
     
-    let billDoc = new BillDoc(httpRequest.body);
-    console.log("new BillDoc(httpRequest.body) = ", billDoc);
+    let newBillDoc = new BillDoc(httpRequest.body);
+    console.log("new BillDoc(httpRequest.body) = ", newBillDoc);
     
-    billDoc.save()
+    newBillDoc.save()
         .then(bill => {
             httpResponse.status(200).json({'bill': 'successfully added to billsDatabase'});
         })
@@ -53,6 +65,49 @@ Routes.route('/create').post(function(httpRequest, httpResponse) {
 
 });
 
+//(b.) READ - GET ALL RESPONSE...
+//http://localhost:5000/api
+
+
+//(c.) READ - GET ONE RESPONSE...
+//http://localhost:5000/api/id
+
+
+//(d.) UPDATE - POST ONE RESPONSE...
+//http://localhost:5000/api/update/id
+
+
+//(e.) DELETE - GET ONE RESPONSE...
+//http://localhost:5000/api/delete/id
+Routes.route('/delete/:id').get(function(httpRequest, httpResponse) {
+    console.log("\nGET request for 'localhost:5000/delete/id' works!");
+    console.log("httpRequest.params.id = ", httpRequest.params.id);
+
+    BillDoc.findById({ _id: httpRequest.params.id }, function(findError, foundBillDoc) {
+        if(findError) {
+            console.log("findError = ", findError);
+            httpResponse.json(findError);
+        } else {
+            foundBillDoc.remove(function(removeError, removedBillDoc) {
+                if(removeError) {
+                    console.log("removeError = ", removeError);
+                    httpResponse.json(removeError);
+                } else {
+                    httpResponse.send({ data: removedBillDoc });
+                    //httpResponse.send("bill with id: "+httpRequest.params.id+" was successfully deleted from billsDatabase");
+                }
+            });
+            
+        }
+    });
+
+});
+
+
+
+
+
+//append 'api' to URL
 app.use('/api', Routes);
 
 //start server
