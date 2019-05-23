@@ -69,6 +69,8 @@ Routes.route('/create').post(function(httpRequest, httpResponse) {
 //http://localhost:5000/api
 Routes.route('/').get(function(httpRequest, httpResponse) {
     console.log("\nGET request for 'localhost:5000/api' works!");
+    //console.log("httpRequest = ", httpRequest); //this generates a lot of stuff!!!
+
     BillDoc.find({}, function(findError, foundBillDocs) {
         if(findError) {
             //do something
