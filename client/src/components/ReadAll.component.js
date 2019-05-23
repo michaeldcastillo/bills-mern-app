@@ -9,7 +9,7 @@ class BillRow extends Component {
                 <td>{this.props.arrayIndex}</td>
                 <td>{this.props.arrayValue._id}</td>
                 <td>{this.props.arrayValue.bill_name}</td>
-                <td>{this.props.arrayValue.bill_payment_url}</td>
+                <td><a href={this.props.arrayValue.bill_payment_url} target="_blank" rel="noopener noreferrer">{this.props.arrayValue.bill_payment_url}</a></td>
                 <td>{this.props.arrayValue.bill_due_date}</td>
                 <td>{this.props.arrayValue.bill_due_amount}</td>
                 <td>{this.props.arrayValue.bill_notes}</td>
@@ -21,10 +21,10 @@ class BillRow extends Component {
 }
 
 class ReadAll extends Component {
-    /*
+    
     //initial state
     state = { billsArray:[] }
-    */
+    
 
     /*
     let BillSchema = new Schema({
@@ -38,6 +38,7 @@ class ReadAll extends Component {
 });
     */
 
+    /*
     //demo data
     state = { billsArray:[
             {
@@ -60,6 +61,7 @@ class ReadAll extends Component {
             }
         ] 
     }
+    */
 
     /* sample bill data... an array of objects
     [
@@ -88,10 +90,11 @@ class ReadAll extends Component {
         console.log("ReadAll componentDidMount()...");
 
         //axios here = axios.get().then().catch()
-        axios.get('http://localhost:5000/api').then(function(axiosResponse) {
-            console.log("axiosResponse = ", axiosResponse);
+        axios.get('http://localhost:5000/api').then((axiosResponse) => {
+            //console.log("axiosResponse = ", axiosResponse);
             console.log("axiosResponse.data = ", axiosResponse.data);
-            //this.setState({ billsArray:axiosResonse.data });
+            console.log("this = ", this);
+            this.setState({ billsArray: axiosResponse.data });
         }).catch(function(axiosError) {
             console.log("ReadAll axios.get() error = ", axiosError);
         });
