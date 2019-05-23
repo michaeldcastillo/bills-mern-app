@@ -62,7 +62,7 @@ class CreateOne extends Component {
         //(a.) POST REQUEST...
         //http://localhost:5000/api/create
         //axios.post().then();
-        axios.post("http://localhost:5000/api/create", newBill).then(function(httpResponse) {
+        axios.post("/api/create", newBill).then(function(httpResponse) {
             console.log("httpResponse = ", httpResponse);
             console.log("httpResponse.data = ", httpResponse.data);
         });

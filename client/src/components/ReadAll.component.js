@@ -90,7 +90,8 @@ class ReadAll extends Component {
         console.log("ReadAll componentDidMount()...");
 
         //axios here = axios.get().then().catch()
-        axios.get('http://localhost:5000/api').then((axiosResponse) => {
+        //http://localhost:5000/api
+        axios.get('/api').then((axiosResponse) => {
             //console.log("axiosResponse = ", axiosResponse);
             console.log("axiosResponse.data = ", axiosResponse.data);
             console.log("this = ", this);
