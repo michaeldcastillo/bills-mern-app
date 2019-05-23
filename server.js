@@ -1,23 +1,31 @@
+require("dotenv").config();
 const express = require('express'); //bring in express
 const app = express(); //create app variable and initialize express
+const path = require("path");
 const bodyParser = require("body-parser");
 const cors = require("cors");
 const mongoose = require("mongoose");
 const Routes = express.Router();
-const PORT = 5000; //'create-react-app' uses 3000
+const PORT = process.env.PORT || 5000; //'create-react-app' uses 3000
 let BillDoc = require("./bill.model.js");
 
 //use middleware
 app.use(cors());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+app.use(express.static(path.join(__dirname, "client", "build")));
 
-//connect to local Mongo database 'todos' using mongoose package
-mongoose.connect("mongodb://localhost:27017/billsDatabase", { useNewUrlParser:true });
+const user = process.env.MLABS_DB_USER;
+const pass = process.env.MLABS_DB_PASS;
+
+//connect to local Mongo database 'billsDatabase' using mongoose package
+//mongoose.connect("mongodb://localhost:27017/billsDatabase", { useNewUrlParser:true });
+mongoose.connect(process.env.MONGODB_URI || "mongodb://"+user+":"+pass+"@ds243059.mlab.com:43059/heroku_0fj8gsxl", { useNewUrlParser:true });
+
 const connection = mongoose.connection;
 
 connection.once("open", function() {
-    console.log("MongoDB database connection established successfully.");
+    console.log("mLabs remote MongoDB database connection established successfully.");
 });
 
 /* route for OLD-EXAMPLES
@@ -167,6 +175,11 @@ Routes.route('/delete/:id').get(function(httpRequest, httpResponse) {
 
 //append 'api' to URL
 app.use('/api', Routes);
+
+//handle everything not handled by one of the routes above
+app.get("*", (req, res) => {
+    res.sendFile(path.join(__dirname, "client", "build", "index.html"));
+});
 
 //start server
 app.listen(PORT, () => console.log(`Server started on port: ${PORT}`));
