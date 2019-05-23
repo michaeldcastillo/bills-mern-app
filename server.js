@@ -67,14 +67,69 @@ Routes.route('/create').post(function(httpRequest, httpResponse) {
 
 //(b.) READ - GET ALL RESPONSE...
 //http://localhost:5000/api
+Routes.route('/').get(function(httpRequest, httpResponse) {
+    console.log("\nGET request for 'localhost:5000/api' works!");
+    BillDoc.find({}, function(findError, foundBillDocs) {
+        if(findError) {
+            //do something
+            console.log("findError = ", findError);
+            httpResponse.json(findError);
+        } else {
+            //do something else
+            console.log("foundBillDocs = ", foundBillDocs);
+            httpResponse.json(foundBillDocs);
+        }
+    });
+});
 
 
 //(c.) READ - GET ONE RESPONSE...
 //http://localhost:5000/api/id
+Routes.route('/:id').get(function(httpRequest, httpResponse) {
+    console.log("\nGET request for 'localhost:5000/api/"+httpRequest.params.id+"' works!");
+    let id = httpRequest.params.id;
+    BillDoc.findById(id, function(findError, foundBillDoc) {
+        if(findError) {
+            console.log("findError = ", findError);
+            httpResponse.json(findError);
+        } else {
+            console.log("foundBillDoc = ", foundBillDoc);
+            httpResponse.json(foundBillDoc);
+        }
+    });
+});
 
 
 //(d.) UPDATE - POST ONE RESPONSE...
 //http://localhost:5000/api/update/id
+Routes.route('/update/:id').post(function(httpRequest, httpResponse) {
+    console.log("\nGET request for 'localhost:5000/api/udpate/"+httpRequest.params.id+"' works!");
+    let id = httpRequest.params.id;
+    BillDoc.findById(id, function(findError, foundBillDoc) {
+        if(findError) {
+            console.log("findError = ", findError);
+            httpResponse.json(findError);
+        } else if(!foundBillDoc) {
+            console.log("foundBillDoc = ", foundBillDoc);
+            httpResponse.status(404).send("bill with id: "+id+" was not found in billsDatabase");
+        } else {
+            console.log("foundBillDoc = ", foundBillDoc);
+            foundBillDoc.bill_name = httpRequest.body.bill_name;
+            foundBillDoc.bill_payment_url = httpRequest.body.bill_payment_url;
+            foundBillDoc.bill_due_date = httpRequest.body.bill_due_date;
+            foundBillDoc.bill_due_amount = httpRequest.body.bill_due_amount;
+            foundBillDoc.bill_notes = httpRequest.body.bill_notes;
+            foundBillDoc.save().then(mongoResponse => {
+                console.log("mongoResponse = ", mongoResponse);
+                httpResponse.status(200).send("bill with id: "+id+" was successfully updated in billsDatabase");
+            }).catch(mongoSaveError => {
+                console.log("mongoSaveError = ", mongoSaveError);
+                httpResponse.status(400).send("bill with id: "+id+" could not be saved to billsDatabase");
+            });
+        }
+    });
+
+});
 
 
 //(e.) DELETE - GET ONE RESPONSE...
@@ -93,6 +148,7 @@ Routes.route('/delete/:id').get(function(httpRequest, httpResponse) {
                     console.log("removeError = ", removeError);
                     httpResponse.json(removeError);
                 } else {
+                    console.log("removedBillDoc = ", removedBillDoc);
                     httpResponse.send({ data: removedBillDoc });
                     //httpResponse.send("bill with id: "+httpRequest.params.id+" was successfully deleted from billsDatabase");
                 }
