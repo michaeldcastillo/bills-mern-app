@@ -4,10 +4,31 @@ import axios from "axios";
 
 //================================ NESTED COMPONENT ==========================================
 class BillRow extends Component {
+
+    delete = this.delete.bind(this);
+
+    delete() {
+        let id = this.props.arrayValue._id;
+        console.log("id = ", id);
+
+        //axios.get().then().catch();
+        axios.get('/api/delete/'+id).then((axiosResponse) => {
+            console.log("axiosResponse = ", axiosResponse);
+
+             //redirect after axios success
+             //console.log("this = ", this);
+             //console.log("ReadAllprops = ", ReadAllprops);
+             //this.props.history.push("/");
+             window.location= "/"; //<-- THIS IS NOT THE RIGHT WAY TO REDIRECT... THIS CREATES A FULL PAGE REFRESH!!!!!!!!!!!!!!!!!!!!!!!!
+
+        }).catch((axiosGetDeleteError) => console.log("axiosGetDeleteError: ", axiosGetDeleteError));
+    }
+
     render() {
         return (
             <tr>
                 <td><Link to={"/update/"+this.props.arrayValue._id}>Edit</Link></td>
+                <td><button onClick={this.delete}>Delete</button></td>
                 <td>{this.props.arrayIndex}</td>
                 <td>{this.props.arrayValue._id}</td>
                 <td>{this.props.arrayValue.bill_name}</td>
@@ -135,7 +156,9 @@ class ReadAll extends Component {
                 <div>
                     <table>
                         <thead>
-                                <tr><th>&nbsp;</th>
+                            <tr>
+                                <th>&nbsp;</th>
+                                <th>&nbsp;</th>
                                 <th>arrayIndex</th>
                                 <th>_id</th>
                                 <th>1. bill_name</th>
