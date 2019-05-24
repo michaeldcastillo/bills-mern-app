@@ -1,11 +1,13 @@
 import React, { Component } from "react";
-//import { Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import axios from "axios";
 
+//================================ NESTED COMPONENT ==========================================
 class BillRow extends Component {
     render() {
         return (
             <tr>
+                <td><Link to={"/update/"+this.props.arrayValue._id}>Edit</Link></td>
                 <td>{this.props.arrayIndex}</td>
                 <td>{this.props.arrayValue._id}</td>
                 <td>{this.props.arrayValue.bill_name}</td>
@@ -14,28 +16,30 @@ class BillRow extends Component {
                 <td>{this.props.arrayValue.bill_due_amount}</td>
                 <td>{this.props.arrayValue.bill_notes}</td>
                 <td>{this.props.arrayValue.bill_paid_amount}</td>
-                <td>{this.props.arrayValue.bill_paid_status}</td>
+                <td className={this.props.arrayValue.bill_paid_status ? 'completed' : ''}>{this.props.arrayValue.bill_paid_status.toString()}</td>
             </tr>
         );
     }
 }
 
+//================================ COMPONENT ==========================================
+
 class ReadAll extends Component {
     
+    /* --------------------- STATE -------------------- */
     //initial state
     state = { billsArray:[] }
     
-
     /*
     let BillSchema = new Schema({
-    bill_name: String,
-    bill_payment_url: String,
-    bill_due_date: String,
-    bill_due_amount: String,
-    bill_notes: String,
-    bill_paid_amount: String,
-    bill_paid_status: Boolean
-});
+        bill_name: String,
+        bill_payment_url: String,
+        bill_due_date: String,
+        bill_due_amount: String,
+        bill_notes: String,
+        bill_paid_amount: String,
+        bill_paid_status: Boolean
+    });
     */
 
     /*
@@ -85,7 +89,7 @@ class ReadAll extends Component {
         }
     ]
     */
-
+    /* --------------------- COMPONENT EVENT LISTENER -------------------- */
     componentDidMount() {
         console.log("ReadAll componentDidMount()...");
 
@@ -101,6 +105,7 @@ class ReadAll extends Component {
         });
     }
 
+    /* --------------------- RENDER NESTED COMPONENT FUNCTION -------------------- */
     renderBillRow() {
         console.log("ReadAll renderBillRow()...");
         return this.state.billsArray.map(function(arrayValue, arrayIndex) {
@@ -110,16 +115,17 @@ class ReadAll extends Component {
 
      /*
     let BillSchema = new Schema({
-    bill_name: String,
-    bill_payment_url: String,
-    bill_due_date: String,
-    bill_due_amount: String,
-    bill_notes: String,
-    bill_paid_amount: String,
-    bill_paid_status: Boolean
+        bill_name: String,
+        bill_payment_url: String,
+        bill_due_date: String,
+        bill_due_amount: String,
+        bill_notes: String,
+        bill_paid_amount: String,
+        bill_paid_status: Boolean
     });
     */
 
+    /* --------------------- RENDER COMPONENT -------------------- */
     render() {
         console.log("ReadAll render()...");
         return (
@@ -129,19 +135,19 @@ class ReadAll extends Component {
                 <div>
                     <table>
                         <thead>
-                            <tr>
+                                <tr><th>&nbsp;</th>
                                 <th>arrayIndex</th>
                                 <th>_id</th>
-                                <th>bill_name</th>
-                                <th>bill_payment_url</th>
-                                <th>bill_due_date</th>
-                                <th>bill_due_amount</th>
-                                <th>bill_notes</th>
-                                <th>bill_paid_amount</th>
-                                <th>bill_paid_status</th>
+                                <th>1. bill_name</th>
+                                <th>2. bill_payment_url</th>
+                                <th>3. bill_due_date</th>
+                                <th>4. bill_due_amount</th>
+                                <th>5. bill_notes</th>
+                                <th>6. bill_paid_amount</th>
+                                <th>7. bill_paid_status</th>
                             </tr>
                         </thead>
-                        {/* render list item component here */}
+                        {/* render nested component here */}
                         <tbody>
                             {this.renderBillRow()}
                         </tbody>

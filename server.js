@@ -129,6 +129,8 @@ Routes.route('/update/:id').post(function(httpRequest, httpResponse) {
             foundBillDoc.bill_due_date = httpRequest.body.bill_due_date;
             foundBillDoc.bill_due_amount = httpRequest.body.bill_due_amount;
             foundBillDoc.bill_notes = httpRequest.body.bill_notes;
+            foundBillDoc.bill_paid_amount = httpRequest.body.bill_paid_amount;
+            foundBillDoc.bill_paid_status = httpRequest.body.bill_paid_status;
             foundBillDoc.save().then(mongoResponse => {
                 console.log("mongoResponse = ", mongoResponse);
                 httpResponse.status(200).send("bill with id: "+id+" was successfully updated in billsDatabase");
