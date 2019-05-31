@@ -92,7 +92,7 @@ class CreateOne extends Component {
             console.log("httpResponse.data = ", httpResponse.data);
             
             //redirect after axios success
-            console.log("this = ", this);
+            console.log("this = ", this); //'this' refers to CreateOne component
             this.props.history.push("/");
 
         }).catch(function(axiosPostError) {
@@ -118,45 +118,43 @@ class CreateOne extends Component {
     render() {
         console.log("CreateOne render()...");
         return (
-            <div style={{border:"2px dotted brown"}}>
-                <p style={{color:"brown"}}><b>CreateOne</b> Component... <b>path="/create"</b></p>
-
-                <div>
+           
                     <form onSubmit={this.onSubmit}>
+                        <br />
                         {/* bill_name */}
                         <div className="">
-                            <label><b>1. bill_name</b> (value = this.state.bill_name):</label><br />
+                            <label><b>Bill Title</b></label><br />
                             <input type="text" value={this.state.bill_name} onChange={this.onChangeBillName} />
                         </div>
                         {/* bill_payment_url */}
                         <div className="">
-                            <label><b>2. bill_payment_url</b> (value = this.state.bill_payment_url):</label><br />
+                            <label><b>Payment Link</b></label><br />
                             <input type="text" value={this.state.bill_payment_url} onChange={this.onChangeBillPaymentURL} />
                         </div>
                          {/* bill_due_date */}
                          <div className="">
-                            <label><b>3. bill_due_date</b> (value = this.state.bill_due_date):</label><br />
+                            <label><b>Due Date</b></label><br />
                             <input type="text" value={this.state.bill_due_date} onChange={this.onChangeBillDueDate} />
                         </div>
                         {/* bill_due_amount */}
                         <div className="">
-                            <label><b>4. bill_due_amount</b> (value = this.state.bill_due_amount):</label><br />
+                            <label><b>Due Amount</b></label><br />
                             <input type="text" value={this.state.bill_due_amount} onChange={this.onChangeBillDueAmount} />
                         </div>
                             {/* bill_notes */}
-                            <div className="">
-                            <label><b>5. bill_notes</b> (value = this.state.bill_notes):</label><br />
+                        <div className="">
+                            <label><b>Notes</b></label><br />
                             <input type="text" value={this.state.bill_notes} onChange={this.onChangeBillNotes} />
                         </div>
+                       
                         {/* submit button */}
-                        <div className="">
-                            <input type="submit" value="Create Bill" className="" />
+                        <div className="submit-container">
+                            <div className="">
+                                <input type="submit" value="Create Bill" className="" />
+                            </div>
                         </div>
-                    </form>
-                </div>
-
-
-            </div>
+                 </form>
+           
         );
     }
 }

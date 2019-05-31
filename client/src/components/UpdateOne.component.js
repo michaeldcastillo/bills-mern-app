@@ -156,55 +156,54 @@ class UpdateOne extends Component {
     render() {
         console.log("UpdateOne render()...");
         return (
-            <div style={{border:"2px dotted brown"}}>
-                <p style={{color:"brown"}}><b>UpdateOne</b> Component... <b>path="/update/:id"</b></p>
-
-                <div>
+               
                     <form onSubmit={this.onSubmit}>
+                        <br />
                         {/* bill_name */}
                         <div className="">
-                            <label><b>1. bill_name</b> (value = this.state.bill_name):</label><br />
+                            <label><b>Bill Title</b></label><br />
                             <input type="text" value={this.state.bill_name} onChange={this.onChangeBillName} />
                         </div>
                         {/* bill_payment_url */}
                         <div className="">
-                            <label><b>2. bill_payment_url</b> (value = this.state.bill_payment_url):</label><br />
+                            <label><b>Payment Link</b></label><br />
                             <input type="text" value={this.state.bill_payment_url} onChange={this.onChangeBillPaymentURL} />
                         </div>
                          {/* bill_due_date */}
                          <div className="">
-                            <label><b>3. bill_due_date</b> (value = this.state.bill_due_date):</label><br />
+                            <label><b>Due Date</b></label><br />
                             <input type="text" value={this.state.bill_due_date} onChange={this.onChangeBillDueDate} />
                         </div>
                         {/* bill_due_amount */}
                         <div className="">
-                            <label><b>4. bill_due_amount</b> (value = this.state.bill_due_amount):</label><br />
+                            <label><b>Due Amount</b></label><br />
                             <input type="text" value={this.state.bill_due_amount} onChange={this.onChangeBillDueAmount} />
                         </div>
                         {/* bill_notes */}
                         <div className="">
-                            <label><b>5. bill_notes</b> (value = this.state.bill_notes):</label><br />
+                            <label><b>Notes</b></label><br />
                             <input type="text" value={this.state.bill_notes} onChange={this.onChangeBillNotes} />
                         </div>
                          {/* bill_paid_amount */}
                          <div className="">
-                            <label><b>6. bill_paid_amount</b> (value = this.state.bill_paid_amount):</label><br />
+                            <label><b>Paid Amount</b></label><br />
                             <input type="text" value={this.state.bill_paid_amount} onChange={this.onChangeBillPaidAmount} />
                         </div>
                         {/* bill_paid_status */}
                         <div className="">
-                            <label><b>7. bill_paid_status</b> (value = this.state.bill_paid_status):</label><br />
-                            <input type="checkbox" value={this.state.bill_paid_status} checked={this.state.bill_paid_status} onChange={this.onChangeBillPaidStatus} />
+                            <label><b>Paid Status</b></label><br />
+                            <input type="checkbox" value={this.state.bill_paid_status} checked={this.state.bill_paid_status} onChange={this.onChangeBillPaidStatus} /> (check if paid)
                         </div>
+                        
                         {/* submit button */}
-                        <div className="">
-                            <input type="submit" value="Update Bill" className="" />
+                        <div className="submit-container">
+                            <div className="">
+                                <input type="submit" value="Update Bill" className="" />
+                            </div>
                         </div>
                     </form>
-                </div>
-
-
-            </div>
+                
+            
         );
     }
 }

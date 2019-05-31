@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style type="text/css">
+
+        body {
+        padding: 10px;
+        background-color: #3F4258;
+        font-family: 'Source Sans Pro',sans-serif;
+        }
+
+        section.the-css-at-table {
+        display: table;
+        border-collapse: collapse;
+        margin: 0 0 20px 0;
+        header {
+            display: table-header-group !important;
+        }
+        .tbody {
+            display: table-row-group;
+        }
+        .tr {
+            display: table-row;
+            > span {
+            display: table-cell;
+            padding: 10px;
+            border: 1px solid #E6E7F1;
+            text-align: left;
+            }
+        }
+        .tr:nth-child(odd) {
+            background-color: #F6F7FA;
+        }
+        .tr:nth-child(even) {
+            background-color: white;
+        }
+        .th {
+            background: #798299;
+            border-color: darken(#798299, 10%);
+            color: white;
+        }
+        .title {
+            display: none;
+        }
+        .no-style-break {
+            display: none;
+        }
+        .spacer {
+            display: none;
+        }
+        @media (max-width: 700px) {
+            display: block;
+            header {
+            display: none !important;
+            }
+            .tbody {
+            display: block;
+            }
+            .tr {
+            display: block;
+            margin: 0 0 20px 0;
+            > span {
+                display: block;
+            }
+            }
+            .tr > span::before {
+            display: inline-block;
+            width: 33%;
+            margin-right: 10px;
+            font-weight: bold;
+            }
+            .title {
+            display: inline-block;
+            width: 30%;
+            font-weight: bold;
+            }
+        }
+        }
+
+
+    </style>
+
+</head>
+<body>
+    
+        <section class="the-css-at-table">
+                
+                <header style="display: none;">
+
+                  <p class="tr">
+                    <span class="th">Company</span>
+                    <span class="th">Preprocessor</span>
+                    <span class="th">Prefixing</span>
+                    <span class="th"># Source Files</span>
+                    <span class="th"># Selectors</span>
+                    <span class="th">Style enforcement</span>
+                    <span class="th">Notes</span>
+                  </p>
+
+                </header>
+
+                <div class="tbody">
+
+                  <p class="tr">
+                    <span>
+                      <span class="title">Company: <br class="no-style-break"></span>
+                      <a href="http://markdotto.com/2014/07/23/githubs-css/">Github</a>
+                    </span><br class="no-style-break"><br class="no-style-break">
+                    <span>
+                      <span class="title">Preprocessor: <br class="no-style-break"></span>
+                      SCSS
+                    </span><br class="no-style-break"><br class="no-style-break">
+                    <span>
+                      <span class="title">Prefixing: <br class="no-style-break"></span>
+                      Custom @mixins
+                    </span><br class="no-style-break"><br class="no-style-break">
+                    <span>
+                      <span class="title"># Source files: <br class="no-style-break"></span>
+                      100+
+                    </span><br class="no-style-break"><br class="no-style-break">
+                    <span>
+                      <span class="title"># Selectors: <br class="no-style-break"></span>
+                      7,000
+                    </span><br class="no-style-break"><br class="no-style-break">
+                    <span>
+                      <span class="title">Style enforcement: <br class="no-style-break"></span>
+                      SCSS-lint, <a href="https://github.com/styleguide/css/">styleguide</a>
+                    </span><br class="no-style-break"><br class="no-style-break">
+                    <span>
+                      <span class="title">Notes: <br class="no-style-break"></span>
+                      2 final stylesheets, because of IE selector limit
+                    </span><br class="no-style-break"><br class="no-style-break">
+                  </p>
+                  <p class="spacer">&nbsp;</p>
+                  <p class="tr">
+                    <span>
+                      <span class="title">Company: <br class="no-style-break"></span>
+                      <a href="http://blog.brianlovin.com/buffers-css/">Buffer</a>
+                    </span><br class="no-style-break"><br class="no-style-break">
+                    <span>
+                      <span class="title">Preprocessor: <br class="no-style-break"></span>
+                      LESS
+                    </span><br class="no-style-break"><br class="no-style-break">
+                    <span>
+                      <span class="title">Prefixing: <br class="no-style-break"></span>
+                      Autoprefixer
+                    </span><br class="no-style-break"><br class="no-style-break">
+                    <span>
+                      <span class="title"># Source files: <br class="no-style-break"></span>
+                      93
+                    </span><br class="no-style-break"><br class="no-style-break">
+                    <span>
+                      <span class="title"># Selectors: <br class="no-style-break"></span>
+                      5328
+                    </span><br class="no-style-break"><br class="no-style-break">
+                    <span>
+                      <span class="title">Style enforcement: <br class="no-style-break"></span>
+                      LESS lint
+                    </span><br class="no-style-break"><br class="no-style-break">
+                    <span>
+                      <span class="title">Notes: <br class="no-style-break"></span>
+                      2 final stylesheets
+                    </span><br class="no-style-break"><br class="no-style-break">
+                  </p>
+                  <p class="spacer">&nbsp;</p>
+                  <p class="tr">
+                    <span>
+                      <span class="title">Company: <br class="no-style-break"></span>
+                      <a href="https://codepen.io/chriscoyier/blog/codepens-css">CodePen</a>
+                    </span><br class="no-style-break"><br class="no-style-break">
+                    <span>
+                      <span class="title">Preprocessor: <br class="no-style-break"></span>
+                      SCSS
+                    </span><br class="no-style-break"><br class="no-style-break">
+                    <span>
+                      <span class="title">Prefixing: <br class="no-style-break"></span>
+                      Autoprefixer
+                    </span><br class="no-style-break"><br class="no-style-break">
+                    <span>
+                      <span class="title"># Source files: <br class="no-style-break"></span>
+                      171
+                    </span><br class="no-style-break"><br class="no-style-break">
+                    <span>
+                      <span class="title"># Selectors: <br class="no-style-break"></span>
+                      1186 
+                    </span><br class="no-style-break"><br class="no-style-break">
+                    <span>
+                      <span class="title">Style enforcement: <br class="no-style-break"></span>
+                      .editorconfig
+                    </span><br class="no-style-break"><br class="no-style-break">
+                    <span>
+                      <span class="title">Notes: <br class="no-style-break"></span>
+                      Asset pipeline
+                    </span><br class="no-style-break"><br class="no-style-break">
+                  </p>
+                  <p class="spacer">&nbsp;</p>
+                  <p class="tr">
+                    <span>
+                      <span class="title">Company: <br class="no-style-break"></span>
+                      <a href="http://dev.ghost.org/css-at-ghost/">Ghost</a>
+                    </span><br class="no-style-break"><br class="no-style-break">
+                    <span>
+                      <span class="title">Preprocessor: <br class="no-style-break"></span>
+                      SCSS (libsass)
+                    </span><br class="no-style-break"><br class="no-style-break">
+                    <span>
+                      <span class="title">Prefixing: <br class="no-style-break"></span>
+                      Autoprefixer
+                    </span><br class="no-style-break"><br class="no-style-break">
+                    <span>
+                      <span class="title"># Source files: <br class="no-style-break"></span>
+                      36
+                    </span><br class="no-style-break"><br class="no-style-break">
+                    <span>
+                      <span class="title"># Selectors: <br class="no-style-break"></span>
+                      1609
+                    </span><br class="no-style-break"><br class="no-style-break">
+                    <span>
+                      <span class="title">Style enforcement: <br class="no-style-break"></span>
+                      General <a href="https://github.com/TryGhost/Ghost/tree/master/core/client/docs?__hstc=10303082.7eb329db9d3e20426769dec21e7bac28.1420901209049.1420901209049.1420901209049.1&__hssc=10303082.3.1420901209050&__hsfp=2446176540">guidelines</a>
+                    </span><br class="no-style-break"><br class="no-style-break">
+                    <span>
+                      <span class="title">Notes: <br class="no-style-break"></span>
+                      <a href="https://github.com/TryGhost/Ghost/tree/master/core/client/assets/sass">Open source</a>
+                    </span><br class="no-style-break"><br class="no-style-break">
+                  </p>
+                  <p class="spacer">&nbsp;</p>
+                  <p class="tr">
+                    <span>
+                      <span class="title">Company: <br class="no-style-break"></span>
+                      <a href="http://mikeaparicio.com/2014/08/10/css-at-groupon/">Groupon</a>
+                    </span><br class="no-style-break"><br class="no-style-break">
+                    <span>
+                      <span class="title">Preprocessor: <br class="no-style-break"></span>
+                      Sass (syntax unclear)
+                    </span><br class="no-style-break"><br class="no-style-break">
+                    <span>
+                      <span class="title">Prefixing: <br class="no-style-break"></span>
+                      Compass
+                    </span><br class="no-style-break"><br class="no-style-break">
+                    <span>
+                      <span class="title"># Source files: <br class="no-style-break"></span>
+                      ?
+                    </span><br class="no-style-break"><br class="no-style-break">
+                    <span>
+                      <span class="title"># Selectors: <br class="no-style-break"></span>
+                      ?
+                    </span><br class="no-style-break"><br class="no-style-break">
+                    <span>
+                      <span class="title">Style enforcement: <br class="no-style-break"></span>
+                      SMACSS
+                    </span><br class="no-style-break"><br class="no-style-break">
+                    <span>
+                      <span class="title">Notes: <br class="no-style-break"></span>
+                      <a href="https://speakerdeck.com/peruvianidol/toolstrap-a-css-framework-for-groupon-internal-tools">Toolstrap</a>
+                    </span><br class="no-style-break"><br class="no-style-break">
+                  </p>
+                  <p class="spacer">&nbsp;</p>
+                  <p class="tr">
+                    <span>
+                      <span class="title">Company: <br class="no-style-break"></span>
+                      <a href="https://ianfeather.co.uk/css-at-lonely-planet/">Lonely Planet</a>
+                    </span><br class="no-style-break"><br class="no-style-break">
+                    <span>
+                      <span class="title">Preprocessor: <br class="no-style-break"></span>
+                      Sass
+                    </span><br class="no-style-break"><br class="no-style-break">
+                    <span>
+                      <span class="title">Prefixing: <br class="no-style-break"></span>
+                      Autoprefixer
+                    </span><br class="no-style-break"><br class="no-style-break">
+                    <span>
+                      <span class="title"># Source files: <br class="no-style-break"></span>
+                      150+
+                    </span><br class="no-style-break"><br class="no-style-break">
+                    <span>
+                      <span class="title"># Selectors: <br class="no-style-break"></span>
+                      1527
+                    </span><br class="no-style-break"><br class="no-style-break">
+                    <span>
+                      <span class="title">Style enforcement: <br class="no-style-break"></span>
+                      <a href="http://rizzo.lonelyplanet.com/styleguide/ui-components/cards">Rizzo</a>, no linting
+                    </span><br class="no-style-break"><br class="no-style-break">
+                    <span>
+                      <span class="title">Notes: <br class="no-style-break"></span>
+                      BEM / OOCSS, Normalize.css, SVG icons
+                    </span><br class="no-style-break"><br class="no-style-break">
+                  </p>
+                  <p class="spacer">&nbsp;</p>
+                  <p class="tr">
+                    <span>
+                      <span class="title">Company: <br class="no-style-break"></span>
+                      <a href="https://medium.com/@fat/mediums-css-is-actually-pretty-fucking-good-b8e2a6c78b06">Medium</a>
+                    </span><br class="no-style-break"><br class="no-style-break">
+                    <span>
+                      <span class="title">Preprocessor: <br class="no-style-break"></span>
+                      LESS
+                    </span><br class="no-style-break"><br class="no-style-break">
+                    <span>
+                      <span class="title">Prefixing: <br class="no-style-break"></span>
+                      Custom @mixins
+                    </span><br class="no-style-break"><br class="no-style-break">
+                    <span>
+                      <span class="title"># Source files: <br class="no-style-break"></span>
+                      ?
+                    </span><br class="no-style-break"><br class="no-style-break">
+                    <span>
+                      <span class="title"># Selectors: <br class="no-style-break"></span>
+                      ?
+                    </span><br class="no-style-break"><br class="no-style-break">
+                    <span>
+                      <span class="title">Style enforcement: <br class="no-style-break"></span>
+                      <a href="https://gist.github.com/fat/a47b882eb5f84293c4ed">Guidelines</a>
+                    </span><br class="no-style-break"><br class="no-style-break">
+                    <span>
+                      <span class="title">Notes: <br class="no-style-break"></span>
+                      No nesting, custom methodology for naming
+                    </span><br class="no-style-break"><br class="no-style-break">
+                  </p>
+                  <p class="spacer">&nbsp;</p>
+                  <p class="tr">
+                    <span>
+                      <span class="title">Company: <br class="no-style-break"></span>
+                      <a href="http://blog.trello.com/refining-the-way-we-structure-our-css-at-trello/">Trello</a>
+                    </span><br class="no-style-break"><br class="no-style-break">
+                    <span>
+                      <span class="title">Preprocessor: <br class="no-style-break"></span>
+                      LESS
+                    </span><br class="no-style-break"><br class="no-style-break">
+                    <span>
+                      <span class="title">Prefixing: <br class="no-style-break"></span>
+                      Custom @mixins
+                    </span><br class="no-style-break"><br class="no-style-break">
+                    <span>
+                      <span class="title"># Source files: <br class="no-style-break"></span>
+                      44
+                    </span><br class="no-style-break"><br class="no-style-break">
+                    <span>
+                      <span class="title"># Selectors: <br class="no-style-break"></span>
+                      2,426
+                    </span><br class="no-style-break"><br class="no-style-break">
+                    <span>
+                      <span class="title">Style enforcement: <br class="no-style-break"></span>
+                      Preprocessor
+                    </span><br class="no-style-break"><br class="no-style-break">
+                    <span>
+                      <span class="title">Notes: <br class="no-style-break"></span>
+                      1 final stylesheet, namespacing
+                    </span><br class="no-style-break"><br class="no-style-break">
+                  </p>
+
+                </div>
+
+              </section>
+
+</body>
+</html>

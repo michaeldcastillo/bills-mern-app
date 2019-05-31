@@ -1,3 +1,10 @@
+
+/*
+* {
+  border:1px solid #dedede;
+}
+*/
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
@@ -5,9 +12,170 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  font-size: 62.5%;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+
+div#root
+{
+  font-size:1.2em; /* relative to body font-size */
+  border:0px solid black; padding:10px;
+}
+
+.completed {
+  text-decoration: line-through;
+  font-weight: bold;
+}
+
+span.divider
+{
+  color:#dedede;
+  font-weight:bold;
+}
+
+
+.responsiveTable tbody tr
+{
+  padding:0px !important;
+  border:0px !important;
+  border-bottom:2px solid #dedede !important;
+}
+
+.responsiveTable td.pivoted 
+{
+  border-bottom:1px solid #dedede !important;
+}
+
+
+Table, Table.responsiveTable
+{
+  border-collapse: collapse;
+  border:2px solid #dedede;
+  width:98%;
+  max-width:1600px;
+}
+
+Th, Td
+{
+  border:1px solid #dedede;
+  padding-top: 3px;
+  padding-right: 6px;
+  padding-bottom: 3px;
+  padding-left: 6px;
+}
+
+Th
+{
+  text-align:left;
+  background-color:#dedede;
+}
+
+Tr:nth-child(even)
+{
+  background-color:#f5f5f5;
+}
+
+Tr:hover
+{
+  background-color: #CCFFCC;
+}
+
+
+
+form
+{
+  padding-top: 0px;
+  padding-right: 10px;
+  padding-bottom: 0px;
+  padding-left: 10px;
+  border-top:2px solid #dedede;
+  width:96.5%;
+  /*border:1px solid aqua;*/
+  background-color: #dedede;
+}
+
+form div
+{
+  /* top right bottom left */
+  padding:5px 0px 5px 0px;
+}
+
+div.submit-container
+{
+  border-top:2px solid #dedede;
+  padding-top:10px;
+}
+
+
+input:focus
+{
+  outline:none;
+}
+
+input[type="text"] 
+{
+  background-color:#F0FFF0;
+  padding-top:3px;
+  padding-bottom:3px;
+  padding-left:3px;
+  padding-right:3px;
+  width:95%;
+  max-width:600px;
+}
+
+input[type="text"]:hover
+{
+  background-color: #CCFFCC;
+}
+
+input[type="text"]:focus
+{
+  background-color: #CCFFCC;
+}
+
+input[type="submit"]
+{
+  width:100px;
+  color:white;
+  background-color:#283A90;
+  padding-top:5px;
+  padding-bottom:5px;
+  font-weight:bold;
+}
+
+input[type="submit"]:hover
+{
+  background-color:#0000FF;
+}
+
+input[type="checkbox"]
+{
+  width:auto;
+  height:auto;
+}
+
+
+
+a:link
+{
+  font-weight:bold;
+  color: #283A90;
+}
+
+a:visited
+{
+  color:#283A90;
+}
+
+a:hover
+{
+  color:#0000FF;
+}
+
+
+
+

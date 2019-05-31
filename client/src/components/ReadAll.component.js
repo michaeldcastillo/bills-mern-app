@@ -1,47 +1,9 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
-
-//================================ NESTED COMPONENT ==========================================
-class BillRow extends Component {
-
-    delete = this.delete.bind(this);
-
-    delete() {
-        let id = this.props.arrayValue._id;
-        console.log("id = ", id);
-
-        //axios.get().then().catch();
-        axios.get('/api/delete/'+id).then((axiosResponse) => {
-            console.log("axiosResponse = ", axiosResponse);
-
-             //redirect after axios success
-             //console.log("this = ", this);
-             //console.log("ReadAllprops = ", ReadAllprops);
-             //this.props.history.push("/");
-             window.location= "/"; //<-- THIS IS NOT THE RIGHT WAY TO REDIRECT... THIS CREATES A FULL PAGE REFRESH!!!!!!!!!!!!!!!!!!!!!!!!
-
-        }).catch((axiosGetDeleteError) => console.log("axiosGetDeleteError: ", axiosGetDeleteError));
-    }
-
-    render() {
-        return (
-            <tr>
-                <td><Link to={"/update/"+this.props.arrayValue._id}>Edit</Link></td>
-                <td><button onClick={this.delete}>Delete</button></td>
-                <td>{this.props.arrayIndex}</td>
-                <td>{this.props.arrayValue._id}</td>
-                <td>{this.props.arrayValue.bill_name}</td>
-                <td><a href={this.props.arrayValue.bill_payment_url} target="_blank" rel="noopener noreferrer">{this.props.arrayValue.bill_payment_url}</a></td>
-                <td>{this.props.arrayValue.bill_due_date}</td>
-                <td>{this.props.arrayValue.bill_due_amount}</td>
-                <td>{this.props.arrayValue.bill_notes}</td>
-                <td>{this.props.arrayValue.bill_paid_amount}</td>
-                <td className={this.props.arrayValue.bill_paid_status ? 'completed' : ''}>{this.props.arrayValue.bill_paid_status.toString()}</td>
-            </tr>
-        );
-    }
-}
+import { Table, Thead, Tbody, Tr, Th, Td } from "react-super-responsive-table";
+//import "react-super-responsive-table/dist/SuperResponsiveTableStyle.css";
+//import "./ReadAll.css"; //CSS for responsive table examples
 
 //================================ COMPONENT ==========================================
 
@@ -51,65 +13,6 @@ class ReadAll extends Component {
     //initial state
     state = { billsArray:[] }
     
-    /*
-    let BillSchema = new Schema({
-        bill_name: String,
-        bill_payment_url: String,
-        bill_due_date: String,
-        bill_due_amount: String,
-        bill_notes: String,
-        bill_paid_amount: String,
-        bill_paid_status: Boolean
-    });
-    */
-
-    /*
-    //demo data
-    state = { billsArray:[
-            {
-                "_id" : "5ce5b9e8febc2a72d0c933de",
-                "bill_name" : "my first bill",
-                "bill_payment_url" : "my link",
-                "bill_due_date" : "tomorrow",
-                "bill_due_amount" : "20,000",
-                "bill_notes" : "i don't have the money!",
-                "__v" : 0
-            },
-            {
-                "_id" : "5ce5dafec9de248793b5b11c",
-                "bill_name" : "my second bill",
-                "bill_payment_url" : "my link 2",
-                "bill_due_date" : "6/1/19",
-                "bill_due_amount" : "4,000",
-                "bill_notes" : "i STILL don't have the money! Baby, I got your money.",
-                "__v" : 0
-            }
-        ] 
-    }
-    */
-
-    /* sample bill data... an array of objects
-    [
-        {
-            "_id" : "5ce5b9e8febc2a72d0c933de",
-            "bill_name" : "my first bill",
-            "bill_payment_url" : "my link",
-            "bill_due_date" : "tomorrow",
-            "bill_due_amount" : "20,000",
-            "bill_notes" : "i don't have the money!",
-            "__v" : 0
-        },
-        {
-            "_id" : "5ce5dafec9de248793b5b11c",
-            "bill_name" : "my second bill",
-            "bill_payment_url" : "my link 2",
-            "bill_due_date" : "6/1/19",
-            "bill_due_amount" : "4,000",
-            "bill_notes" : "i STILL don't have the money! Baby, I got your money.",
-            "__v" : 0
-        }
-    ]
-    */
     /* --------------------- COMPONENT EVENT LISTENER -------------------- */
     componentDidMount() {
         console.log("ReadAll componentDidMount()...");
@@ -119,8 +22,11 @@ class ReadAll extends Component {
         axios.get('/api').then((axiosResponse) => {
             //console.log("axiosResponse = ", axiosResponse);
             console.log("axiosResponse.data = ", axiosResponse.data);
-            console.log("this = ", this);
+
+            console.log("this = ", this); //'this' refers to ReadAll component
+
             this.setState({ billsArray: axiosResponse.data });
+
         }).catch(function(axiosError) {
             console.log("ReadAll axios.get() error = ", axiosError);
         });
@@ -134,50 +40,86 @@ class ReadAll extends Component {
         });
     }
 
-     /*
-    let BillSchema = new Schema({
-        bill_name: String,
-        bill_payment_url: String,
-        bill_due_date: String,
-        bill_due_amount: String,
-        bill_notes: String,
-        bill_paid_amount: String,
-        bill_paid_status: Boolean
-    });
-    */
-
-    /* --------------------- RENDER COMPONENT -------------------- */
+     /* --------------------- RENDER COMPONENT -------------------- */
     render() {
         console.log("ReadAll render()...");
         return (
-            <div style={{border:"2px dotted brown"}}>
-                <p style={{color:"brown"}}><b>ReadAll</b> Component... <b>path="/"</b></p>
+          
 
-                <div>
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>&nbsp;</th>
-                                <th>&nbsp;</th>
-                                <th>arrayIndex</th>
-                                <th>_id</th>
-                                <th>1. bill_name</th>
-                                <th>2. bill_payment_url</th>
-                                <th>3. bill_due_date</th>
-                                <th>4. bill_due_amount</th>
-                                <th>5. bill_notes</th>
-                                <th>6. bill_paid_amount</th>
-                                <th>7. bill_paid_status</th>
-                            </tr>
-                        </thead>
+                    <Table>
+                        <Thead>
+                            <Tr>
+                                <Th>Bill Title</Th>
+                                <Th>Payment Link</Th>
+                                <Th>Due Date</Th>
+                                <Th>Due Amount</Th>
+                                <Th>Notes</Th>
+                                <Th>Paid Amount</Th>
+                                <Th>Paid Status</Th>
+                                <Th>&nbsp;</Th>
+                                <Th>&nbsp;</Th>
+                            </Tr>
+                        </Thead>
                         {/* render nested component here */}
-                        <tbody>
+                        <Tbody>
                             {this.renderBillRow()}
-                        </tbody>
-                    </table>
-                </div>
+                        </Tbody>
+                    </Table>
 
-            </div>
+        
+        );
+    }
+}
+
+
+//================================ NESTED COMPONENT ==========================================
+
+
+//const border = { border:"2px dotted red", backgroundColor:"yellow" };
+
+
+class BillRow extends Component {
+
+    delete = this.delete.bind(this);
+
+    delete() {
+        console.log("BillRow delete()...");
+        let id = this.props.arrayValue._id;
+        console.log("id = ", id);
+
+        //axios.get().then().catch();
+        axios.get('/api/delete/'+id).then((axiosResponse) => {
+            console.log("item was deleted");
+            console.log("axiosResponse = ", axiosResponse);
+
+            //redirect after axios success
+            console.log("this = ", this); //'this' refers to BillRow component
+            //this.props.history.push("/"); //cannot read property 'push of undefined.
+
+            //correct way is to set the state of the parent 'ReadAll' component (billsArray) and it will refresh only the component with one fewer bill
+
+            window.location.reload(); //HACK!!!!!!!!!!!!!
+
+        }).catch((axiosGetDeleteError) => console.log("axiosGetDeleteError: ", axiosGetDeleteError));
+    }
+
+    render() {
+        return (
+            
+             <Tr>
+                <Td>{this.props.arrayValue.bill_name}</Td>
+                <Td><a href={this.props.arrayValue.bill_payment_url} target="_blank" rel="noopener noreferrer">{this.props.arrayValue.bill_payment_url}</a></Td>
+                <Td>{this.props.arrayValue.bill_due_date}</Td>
+                <Td>{this.props.arrayValue.bill_due_amount}</Td>
+                <Td>{this.props.arrayValue.bill_notes}</Td>
+                <Td>{this.props.arrayValue.bill_paid_amount}</Td>
+                <Td className={this.props.arrayValue.bill_paid_status ? 'completed' : ''}>{this.props.arrayValue.bill_paid_status.toString()}</Td>
+                <Td><Link to={"/update/"+this.props.arrayValue._id}>Edit</Link></Td>
+                {/* <Td><button onClick={this.delete}>Delete</button></Td> */}
+                {/* <Td><Link to={"/delete/"+this.props.arrayValue._id}>Delete</Link></Td> */}
+                <Td><Link to="#" onClick={this.delete}>Delete</Link></Td>
+            </Tr>
+
         );
     }
 }
